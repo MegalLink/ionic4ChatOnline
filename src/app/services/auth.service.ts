@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 @Injectable({
@@ -5,7 +6,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 })
 export class AuthService {
 
-  constructor(private afAuth:AngularFireAuth) { }
+  constructor(private afAuth:AngularFireAuth , private router:Router) { }
 
 login(mail,pass){
   return new Promise((aceptado,rechazado)=>{
@@ -14,10 +15,16 @@ login(mail,pass){
     }).catch(error=>rechazado(error));
   
   })
+  
 
   
 }
-
+logOut(){
+  this.afAuth.auth.signOut().then(()=>{
+    this.router.navigate(['/login']);
+  })
+  
+}
 isAuth(){
   
 }

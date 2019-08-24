@@ -18,4 +18,8 @@ login(mail,pass){
   
 }
 
+isAuth(){
+  
+}
+
 }

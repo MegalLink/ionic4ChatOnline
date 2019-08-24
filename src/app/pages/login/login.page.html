@@ -8,12 +8,12 @@
   <img class="icon"src="../../../assets/icon/voice-message-icon.png" alt="">
   <ion-item>
       <ion-label position="floating">Correo Electronico</ion-label>
-      <ion-input type="text" name="email"></ion-input>
+      <ion-input [(ngModel)]="emailTs" type="text" name="email"></ion-input>
   </ion-item>
   <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" name="password"></ion-input>
+      <ion-input [(ngModel)]="passwordTs" type="password" name="password"></ion-input>
     </ion-item>
   
-<ion-button expand="block">  Entrar</ion-button>
+<ion-button expand="block" (click)="onSubmitLogin()"> Entrar</ion-button>
 </ion-content>

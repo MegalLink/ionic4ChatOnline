@@ -1,8 +1,9 @@
 import { InterfaceChatRoom } from './../interfaces/InterfaceChatRoom';
 import { map } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
+import { InterfaceMessage } from '../interfaces/InterfaceMessage';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,17 @@ export class ChatService {
       return data;
      })
    }))
+  }
+  getChatRoom(chatId: string){
+    return this.db.collection('chatRooms').doc(chatId).valueChanges() //un solo observable
+
+  }
+  sendMsgToFirebase(message: InterfaceMessage,chat_id: string){
+    
+   this.db.collection('chatRooms').doc(chat_id).update({  
+     
+      messages: firestore.FieldValue.arrayUnion(message) //push en un arreglo
+   })
+
   }
 }

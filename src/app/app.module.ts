@@ -5,6 +5,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+
+import {FormsModule} from "@angular/forms"
 import { ChatComponent} from '../app/componentes/chat/chat.component'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,8 +20,8 @@ import {AngularFirestoreModule} from '@angular/fire/firestore'
   imports: [
     BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,AngularFirestoreModule
-  
+    AngularFireAuthModule,AngularFirestoreModule,
+    FormsModule
   ],
   providers: [
     StatusBar,

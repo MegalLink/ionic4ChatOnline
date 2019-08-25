@@ -22,8 +22,7 @@ public chatRooms: any=[];
   ngOnInit(){//subscribe es para estar viendo los cambios en tiempo real
     this.chatService.getChatRooms().subscribe(chats=>{
      this.chatRooms=chats;
-     
-     
+        
     })
   }
  onLogOut(){

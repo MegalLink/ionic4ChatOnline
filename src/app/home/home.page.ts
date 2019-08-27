@@ -1,3 +1,4 @@
+import { InterfaceUser } from './../interfaces/InterfaceUser';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ChatService } from './../services/chat.service';
 import { AuthService } from './../services/auth.service';
@@ -12,7 +13,11 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
+  user:InterfaceUser={
+    name:'',
+    email:'',
+    photoUrl:''
+  };
 public chatRooms: any=[];
   constructor(public authS: AuthService,
     public chatService: ChatService, 
@@ -23,6 +28,15 @@ public chatRooms: any=[];
     this.chatService.getChatRooms().subscribe(chats=>{
      this.chatRooms=chats;
         
+    })
+    this.authS.isAuth().subscribe(user=>{
+      console.log('User', user);
+      if(user){
+        this.user.name=user.displayName;
+        this.user.email=user.email;
+        this.user.photoUrl=user.photoURL;
+        
+      }
     })
   }
  onLogOut(){

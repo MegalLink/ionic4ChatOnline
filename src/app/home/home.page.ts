@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase';
 import { InterfaceUser } from './../interfaces/InterfaceUser';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ChatService } from './../services/chat.service';
@@ -13,31 +16,22 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  user:InterfaceUser={
-    name:'',
-    email:'',
-    photoUrl:''
-  };
+
+   
 public chatRooms: any=[];
   constructor(public authS: AuthService,
     public chatService: ChatService, 
     private modal: ModalController,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController,
+    private afAuth:AngularFireAuth,
+    private router: Router
     ) {}
   ngOnInit(){//subscribe es para estar viendo los cambios en tiempo real
     this.chatService.getChatRooms().subscribe(chats=>{
      this.chatRooms=chats;
-        
+     
     })
-    this.authS.isAuth().subscribe(user=>{
-      console.log('User', user);
-      if(user){
-        this.user.name=user.displayName;
-        this.user.email=user.email;
-        this.user.photoUrl=user.photoURL;
-        
-      }
-    })
+    
   }
  onLogOut(){
 this.authS.logOut();
@@ -62,11 +56,18 @@ async presentActionSheet() {
       handler: () => { //Desencade = Trigger
         this.onLogOut();
       }
+    },{
+      text: 'Mi Perfil',
+      icon: 'contact',
+      handler: () => { //Desencade = Trigger
+       this.router.navigate(['/profile']);
+      }
     }
   ]
   });
   await actionSheet.present();
 }
+
 
 
 }

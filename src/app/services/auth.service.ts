@@ -35,7 +35,7 @@ logOut(){
 isAuth(){
   return this.afAuth.authState.pipe(map(auth=>auth));
 }
-register(email:string, password:string, name:string){
+register(email:string, password:string, name:string,photoURL:string){
   return new Promise((resolve,reject)=>{
     this.afAuth.auth.createUserWithEmailAndPassword(email,password).then(res=>{
       const uId=res.user.uid;
@@ -43,13 +43,25 @@ register(email:string, password:string, name:string){
       this.db.collection('users').doc(uId).set({
         name: name,
         uid: uId,
-        photoURL: 'https://firebasestorage.googleapis.com/v0/b/chatonline-d5aa5.appspot.com/o/user_logo.png?alt=media&token=4077ce30-5fec-4fcc-b6a0-f6a3399addc2',
+        photoURL: photoURL
       })
+      
+      this.updateUserDataDefault(name,photoURL);
       resolve(res)
     }).catch(error=> reject())
   })
  
 }
-
+ updateUserDataDefault(name:string, photoURL:string ) {
+  this.afAuth.auth.currentUser.
+updateProfile({
+  displayName: name,
+  photoURL:photoURL
+}).then(function(user) {
+  console.log("USUARIO ACTUALIZADO CON EXITO",user)
+}).catch(function(error) {
+  console.log("ERROR AL ATUALIZAR USUARIO",error)
+});
+}
 
 }

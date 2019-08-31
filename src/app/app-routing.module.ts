@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', loadChildren:'./home/home.module#HomePageModule',canActivate: [AuthGuard]},
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule',canActivate:[NologinGuard] },
   { path: 'registro', loadChildren: './pages/registro/registro.module#RegistroPageModule',canActivate:[NologinGuard] },
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
 ];
 
 @NgModule({

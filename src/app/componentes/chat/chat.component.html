@@ -11,7 +11,10 @@
   <div *ngIf="room">
     <ion-card *ngFor="let mensaje of room.messages">
       <ion-card-content>
-        {{ mensaje.content }}
+          <div class="card-title">User name:{{mensaje.nameUser}}</div>
+          <div class="card-subtitle">Mensaje: {{mensaje.content}}</div>
+          <div class="card-subtitle">{{mensaje.date.seconds * 1000 | date:'MM-dd-yyyy h:mm:ss'}}</div>
+        
       </ion-card-content>
     </ion-card>
   </div>

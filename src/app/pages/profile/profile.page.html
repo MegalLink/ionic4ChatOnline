@@ -1,17 +1,17 @@
-<ion-header>
+<ion-header >
   <ion-toolbar color="tertiary">
-    <ion-button slot="start" fill="clear" (click)="regresarHome()">
+    <ion-button  slot="start" fill="clear" (click)="regresarHome()">
       <ion-icon class="regresar" name="arrow-round-back"></ion-icon>
     </ion-button>
-    <ion-title>Perfil de usuario</ion-title>
+    <ion-title >Perfil de usuario</ion-title>
     
   </ion-toolbar>
  
 </ion-header>
 
-<ion-content>
-  <ion-item class="ion-text-center" >
-    <ion-avatar class="ion-margin-start" slot="start">
+<ion-content color="dark">
+  <ion-item class="ion-text-center" color="success">
+    <ion-avatar class="ion-margin-start" slot="start" >
       <ion-img [src]="user.photoUrl"></ion-img>
       </ion-avatar>
       <ion-label > <h3>Usuario:</h3> {{user.name}} <br><h3>Email:</h3> {{user.email}}</ion-label>
@@ -20,7 +20,7 @@
   
  
 
-  <ion-item *ngIf="modificar">
+  <ion-item *ngIf="modificar" color="warning">
     <ion-label position="floating">Nuevo Nombre</ion-label>
     <ion-input [(ngModel)]="uName" type="text" name="nombre" required></ion-input>
 </ion-item>

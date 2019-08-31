@@ -60,4 +60,8 @@ imgUser: this.urlUser
  aumentarMsg(variable: any){
 return 'Mensage :'+ variable;
  }
+ formatearFecha(variable:any){
+  //"Timestamp(seconds=1566763049, nanoseconds=633000000)" 
+  return 
+ }
 }
